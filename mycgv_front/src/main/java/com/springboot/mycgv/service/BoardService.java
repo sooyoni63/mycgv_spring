@@ -35,6 +35,10 @@ public class BoardService {
 		return boardDao.getDelete(boardDto);
 	}
 	
+	public int getUpdateHits(String bid) {
+		return boardDao.getUpdateHits(bid);
+	}
+	
 }
 
 

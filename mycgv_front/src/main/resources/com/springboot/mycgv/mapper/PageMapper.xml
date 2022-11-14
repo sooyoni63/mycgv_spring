@@ -7,7 +7,20 @@
 <mapper namespace="com.springboot.mycgv.mapper.PageMapper">
 
 	<select id="totalCount" parameterType="java.lang.String" resultType="int">
-		select count(*) from cgv_board <!-- 테이블명, 컬럼명에는 파라미터 직접매핑 불가 -->
+		select count(*) from  <!-- 테이블명, 컬럼명에는 파라미터 직접매핑 불가 -->
+		<choose>
+			<when test = 'tableName.equals("board")'>
+				cgv_board
+			</when>
+			<when test = 'tableName.equals("notice")'>
+				cgv_notice
+			</when>
+			<when test = 'tableName.equals("movie")'>
+				cgv_movie
+			</when>
+		
+		</choose>
+	
 	</select>
 	
 </mapper>

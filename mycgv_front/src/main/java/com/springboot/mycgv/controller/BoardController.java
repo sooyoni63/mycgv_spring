@@ -112,10 +112,10 @@ public class BoardController {
 	public String board_write_post(BoardDto boardDto) throws Exception{
 		
 		if(fileService.fileCheck(boardDto.getFile1())) {
-			boardDto = fileService.init(boardDto);
+			boardDto = (BoardDto)fileService.init(boardDto, "board");
 			
 			int result = boardService.getWrite(boardDto);
-			if(result == 1) fileService.saveFile(boardDto);
+			if(result == 1) fileService.saveFile(boardDto, "board");
 			
 		}else {
 			boardDto.setBfile("");
@@ -123,7 +123,7 @@ public class BoardController {
 			boardService.getWrite(boardDto);
 		}
 		
-		return "redirect:/board_list";
+		return "redirect:/board_list/1";
 	}
 	
 	/**
@@ -134,18 +134,20 @@ public class BoardController {
 
 		model.addAttribute("bid", bid);
 		model.addAttribute("rpage", rpage);
+		model.addAttribute("bsfile", boardService.getContent(bid).getBsfile());
 		
 		return "/board/board_delete";
 	}
 	
 	@PostMapping("/board_delete")
-	public String board_delete_post(BoardDto boardDto) {
-		String pageName="";
+	public String board_delete_post(BoardDto boardDto) throws Exception{
 		
 		int result = boardService.getDelete(boardDto);
-		if(result == 1) pageName = "redirect:/board_list";
+		if(result == 1) {
+			fileService.deleteFile(boardDto.getBsfile());
+		}
 		
-		return pageName;
+		return "redirect:/board_list/1";
 		
 	}
 	
@@ -165,15 +167,17 @@ public class BoardController {
 	public String board_update_post(BoardDto boardDto) throws Exception{
 		
 		if(fileService.fileCheck(boardDto.getFile1())) {
+			
 			String oldfile = boardDto.getBsfile();
-			boardDto = fileService.init(boardDto);
+			boardDto = (BoardDto)fileService.init(boardDto, "board");
 			int result = boardService.getUpdate(boardDto);
 			if(result == 1) {
-				fileService.saveFile(boardDto);
+				fileService.saveFile(boardDto, "board");
 				fileService.deleteFile(oldfile);
-			}else {
-				boardService.getUpdate(boardDto);
 			}
+			
+		}else {
+			boardService.getUpdate(boardDto);
 		}
 		
 		return "redirect:/board_list";
@@ -188,6 +192,7 @@ public class BoardController {
 
 		model.addAttribute("vo", boardService.getContent(bid));
 		model.addAttribute("rpage", rpage);
+		boardService.getUpdateHits(bid);
 		
 		return "/board/board_content";
 	}
@@ -197,7 +202,7 @@ public class BoardController {
 	 */
 	@GetMapping("/board_list/{rpage}")
 	public String board_list(@PathVariable String rpage, Model model) {
-		PageDto pageDto = pageService.getPageCount(rpage);
+		PageDto pageDto = pageService.getPageCount(rpage, "board");
 				
 		model.addAttribute("list", boardService.getList(pageDto));
 		model.addAttribute("page", pageDto);
@@ -210,5 +215,7 @@ public class BoardController {
 	public String board_list_root() {
 		return "redirect:/board_list/1" ;
 	}
+	
+	
 	
 }

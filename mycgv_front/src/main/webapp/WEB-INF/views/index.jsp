@@ -32,6 +32,17 @@
 		padding:0 8px; 
 	}
 </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!--   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
 </head>
 <body>
 	<!-- Header Include -->
@@ -42,7 +53,40 @@
 	<!--------------- Content ----------------------->
 	<!---------------------------------------------->
 	<div class="carousel">
-		<h1>메인-캐러셀</h1>
+		<div id="demo" class="carousel slide" data-ride="carousel">
+	
+		  <!-- Indicators -->
+		  <ul class="carousel-indicators">
+		    <li data-target="#demo" data-slide-to="0" class="active"></li>
+		    <li data-target="#demo" data-slide-to="1"></li>
+		    <li data-target="#demo" data-slide-to="2"></li>
+		    <li data-target="#demo" data-slide-to="3"></li>
+		  </ul>
+		  
+		  <!-- The slideshow -->
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="http://localhost:9000/images/carousel_01.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/images/carousel_02.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/images/carousel_03.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/images/carousel_04.jpg">
+		    </div>
+		  </div>
+		  
+		  <!-- Left and right controls -->
+		  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+		    <span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#demo" data-slide="next">
+		    <span class="carousel-control-next-icon"></span>
+		  </a>
+	</div>
 	</div>
 	<div class="content">
 		<section>
@@ -54,24 +98,24 @@
 					<div>99%  | 예매율 37.1%</div>
 				</article>
 				<article>
-					<img src="http://localhost:9000/images/82120_320.jpg">
-					<div>탑건-매버릭</div>
-					<div>99%  | 예매율 37.1%</div>
+					<img src="http://localhost:9000/images/78207_320.jpg">
+					<div>매드맥스</div>
+					<div>99%  | 예매율 25.5%</div>
 				</article>
 				<article>
-					<img src="http://localhost:9000/images/82120_320.jpg">
-					<div>탑건-매버릭</div>
-					<div>99%  | 예매율 37.1%</div>
+					<img src="http://localhost:9000/images/86119_320.jpg">
+					<div>와칸다 포에버</div>
+					<div>99%  | 예매율 17.3%</div>
 				</article>
 				<article>
-					<img src="http://localhost:9000/images/82120_320.jpg">
-					<div>탑건-매버릭</div>
-					<div>99%  | 예매율 37.1%</div>
+					<img src="http://localhost:9000/images/86326_320.jpg">
+					<div>동감</div>
+					<div>99%  | 예매율 7.1%</div>
 				</article>
 				<article>
-					<img src="http://localhost:9000/images/82120_320.jpg">
-					<div>탑건-매버릭</div>
-					<div>99%  | 예매율 37.1%</div>
+					<img src="http://localhost:9000/images/86481_320.jpg">
+					<div>올빼미</div>
+					<div>99%  | 예매율 2.6%</div>
 				</article>
 			</div>
 		</section>

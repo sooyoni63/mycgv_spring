@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.mycgv.dto.BoardDto;
+import com.springboot.mycgv.dto.MovieDto;
 import com.springboot.mycgv.dto.NoticeDto;
 
 @Service
@@ -56,6 +57,24 @@ public class FileService {
 				}
 			}
 			objDto = dto;
+		}else if(objName.equals("movie")) {
+			MovieDto dto = (MovieDto)object;
+			
+			MultipartFile[] files = dto.getFiles();
+			
+			for(MultipartFile file : files ) {
+				if(file != null) {
+					if(!file.getOriginalFilename().equals("")) {
+						UUID uuid = UUID.randomUUID();
+						dto.setMfile1(file.getOriginalFilename());
+						dto.setMsfile1(uuid+"_"+file.getOriginalFilename());
+						dto.setMfile2(file.getOriginalFilename());
+						dto.setMsfile2(uuid+"_"+file.getOriginalFilename());
+					}
+				}
+			}
+			objDto = dto;
+			
 		}
 		
 
@@ -90,6 +109,7 @@ public class FileService {
 			file.delete();
 		}
 	}
+
 	
 	
 	

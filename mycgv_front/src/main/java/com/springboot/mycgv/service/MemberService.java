@@ -30,6 +30,10 @@ public class MemberService {
 	public MemberDto getMemberContent(String id) {
 		return memberDao.getMemberContent(id);
 	}
+	
+	public int idCheck(String id) {
+		return memberDao.idCheck(id);
+	}
 }
 
 

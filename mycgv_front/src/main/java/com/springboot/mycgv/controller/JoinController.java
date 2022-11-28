@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springboot.mycgv.dto.MemberDto;
 import com.springboot.mycgv.service.MemberService;
@@ -17,16 +19,16 @@ public class JoinController {
    private MemberService memberService;
    
    //id_check : 아이디 중복 체크  -  Ajax 호출
- /*  @ResponseBody
+   @ResponseBody
    @GetMapping("/id_check/{id}")
    public String id_check(@PathVariable String id) {
-      int result = memberService.getIdCheck(id);
+      int result = memberService.idCheck(id);
       
       return String.valueOf(result);
    }
    
    //joinCheck.do
-   @RequestMapping(value = "/joinCheck", method = RequestMethod.POST)
+ /*  @RequestMapping(value = "/joinCheck", method = RequestMethod.POST)
    public ModelAndView joinCheck(MemberDto dto) {
       ModelAndView mv = new ModelAndView();
 

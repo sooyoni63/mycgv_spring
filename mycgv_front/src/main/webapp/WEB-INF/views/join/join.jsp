@@ -11,6 +11,7 @@
 <script src="http://localhost:9000/js/mycgv_jquery.js"></script>
 <script>
 	$(document).ready(function(){
+		const id = $("#id").val();
 		//중복확인 버튼 이벤트 처리 --> AJAX 호출
 		$("#idCheck").click(function(){
 			if($("#id").val() == ""){
@@ -20,11 +21,11 @@
 			}else{
 				//중복체크 진행 : AJAX 호출 및 결과 출력
 				$.ajax({
-					url:"id_check.do?id="+$("#id").val(),
+					url:"id_check/"+$("#id").val(),
 					success:function(result){
 						//alert("result===>>" + result);
 						if(result == 1){
-							$("#idCheckMsg").text("사용중인 아이디입니다. 다시 입력해주세요~")
+							$("#idCheckMsg").text("사용중인 아이디입니다. 다시 입력해주세요.")
 								.css("color","red").css("font-size","11px")
 								.css("margin","5px 0 0 156px");
 							$("#id").val("").focus();							
@@ -42,6 +43,18 @@
 		});//ready
 	});
 </script>
+<style>
+	input#addr1{
+	    margin-left: 157px;
+	}
+	input#zonecode{
+		border: 1px solid #ccc;
+	    border-radius: 5px;
+	    width: 17%;
+	    padding: 8px 10px;
+	    font-size: 12px;
+	}
+</style>
 </head>
 <body>
 	<!-- Header Include -->
@@ -69,7 +82,7 @@
 				<li>
 					<label>비밀번호 확인</label>
 					<input type="password" name="cpass" id="cpass" >
-					<span id="passCheckMsg">*비밀번호를 다시 입력해주세요</span>
+					<span id="passCheckMsg"></span>
 				</li>
 				<li>
 					<label>성명</label>

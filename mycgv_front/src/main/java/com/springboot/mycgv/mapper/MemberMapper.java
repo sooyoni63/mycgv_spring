@@ -15,6 +15,7 @@ public interface MemberMapper {
 	List<MemberDto> getMemberList(PageDto pageDto);
 	MemberDto getMemberContent(String id);
 	String getMid();
+	int idCheck(String id);
 	
 }
 
